@@ -16,19 +16,19 @@ async function readTodo() {
         // header: { "x-access-token": token }, 로그인 토큰
     };
     try {
-        const res = await fetch(config.url, {
-            method: config.method,
-        });
-        if (!res.ok) {
-            throw Error(res.statusText);
-        }
-
-        const data = await res.json();
-        if (data.code !== 200) {
-            alert(data.message);
+        const res = await axios(config);
+        // const res = await fetch(config.url, {
+        //     method: config.method,
+        // });
+        // if (!res.ok) {
+        //     throw Error(res.statusText);
+        // }
+        //const data = await res.json();
+        if (res.data.code !== 200) {
+            alert(res.data.message);
             return false;
         }
-        const todoDataSet = data.result;
+        const todoDataSet = res.data.result;
         console.log(todoDataSet);
 
         for (let section in todoDataSet) { // key 뽑기
