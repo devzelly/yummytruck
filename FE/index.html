@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>야미트럭</title>
+    <!-- 파비콘 -->
+    <!-- <link rel="icon" href="./img/favicon.ico" /> -->
+</head>
+
+<style>
+    .done-text-container {
+        display: flex;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <h1>야미트럭</h1>
+    <div class="matrix-container">
+        <div class="matrix-item" id="decide">
+            <div class="matrix-item-header">
+                <div class"matrix-item-title">Decide</div>
+                <input class="matrix-input" type="text" placeholder="입력후 엔터" maxlength="50" />
+            </div>
+            <ul class="matrix-item-list"></ul>
+        </div>
+        <div class="matrix-item" id="do">
+            <div class="matrix-item-header">
+                <div class"matrix-item-title">Do</div>
+                <input class="matrix-input" type="text" placeholder="입력후 엔터" maxlength="50" />
+            </div>
+            <ul class="matrix-item-list"></ul>
+        </div>
+        <div class="matrix-item" id="delegate">
+            <div class="matrix-item-header">
+                <div class"matrix-item-title">Delegate</div>
+                <input class="matrix-input" type="text" placeholder="입력후 엔터" maxlength="50" />
+            </div>
+            <ul class="matrix-item-list"></ul>
+        </div>
+        <div class="matrix-item" id="delete">
+            <div class="matrix-item-header">
+                <div class"matrix-item-title">Delete</div>
+                <input class="matrix-input" type="text" placeholder="입력후 엔터" maxlength="50" />
+            </div>
+            <ul class="matrix-item-list"></ul>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js"
+        integrity="sha512-JWQFV6OCC2o2x8x46YrEeFEQtzoNV++r9im8O8stv91YwHNykzIS2TbvAlFdeH0GVlpnyd79W0ZGmffcRi++Bw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+    <script src="./js/common.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/todo.js"></script>
+</body>
+
+</html>
