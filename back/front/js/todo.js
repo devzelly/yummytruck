@@ -1,6 +1,5 @@
 // this script : todo.js
 const userIdx = 1;
-const url = "http://127.0.0.1:3000";
 readTodo();
 
 async function readTodo() {
