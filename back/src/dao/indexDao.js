@@ -26,7 +26,7 @@ const { pool } = require('../../database.js');
 //     }
 // };
 
-exports.insertTodo = async function (userIdx, contents, type) {
+exports.insertStore = async function (userIdx, contents, type) {
     try {
         // DB 연결 검사
         const connection = await pool.getConnection(async (conn) => conn);
@@ -52,7 +52,7 @@ exports.insertTodo = async function (userIdx, contents, type) {
     }
 }
 
-exports.selectTodoByType = async function (userIdx, type) {
+exports.selectByType = async function (userIdx, type) {
     try {
         // DB 연결 검사
         const connection = await pool.getConnection(async (conn) => conn);
@@ -79,7 +79,7 @@ exports.selectTodoByType = async function (userIdx, type) {
     }
 }
 
-exports.selectValidTodo = async function (userIdx, todoIdx) {
+exports.selectValid = async function (userIdx, todoIdx) {
     try {
         // DB 연결 검사
         const connection = await pool.getConnection(async (conn) => conn);
@@ -106,7 +106,7 @@ exports.selectValidTodo = async function (userIdx, todoIdx) {
     }
 }
 
-exports.updateTodo = async function (userIdx, todoIdx, contents, status) {
+exports.update = async function (userIdx, todoIdx, contents, status) {
     try {
         // DB 연결 검사
         const connection = await pool.getConnection(async (conn) => conn);
@@ -133,7 +133,7 @@ exports.updateTodo = async function (userIdx, todoIdx, contents, status) {
     }
 }
 
-exports.deleteTodo = async function (userIdx, todoIdx) {
+exports.delete = async function (userIdx, todoIdx) {
     try {
         // DB 연결 검사
         const connection = await pool.getConnection(async (conn) => conn);

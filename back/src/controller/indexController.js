@@ -1,7 +1,8 @@
+// 테스트
 // this code : indexController.js
 const indexDao = require('../dao/indexDao.js');
 
-exports.createTodo = async function (req, res) {
+exports.createStore = async function (req, res) {
     const { userIdx, contents, type } = req.body;
     // console.log(userIdx, contents, type);
 
@@ -23,8 +24,8 @@ exports.createTodo = async function (req, res) {
             message: "20글자 이하로"
         });
     }
-    // 3. type 배열 : do, decide, delete, delegate
-    const validTypes = ["do", "decide", "delete", "delegate"];
+    // 3. type 배열 : 
+    const validTypes = ["chicken", "takoyaki", "fishBread", "hotteok"];
     if (!validTypes.includes(type)) {
         return res.send({
             isSuccess: false,
@@ -33,7 +34,7 @@ exports.createTodo = async function (req, res) {
         });
     }
 
-    const insertTodoRow = await indexDao.insertTodo(userIdx, contents, type);
+    const insertTodoRow = await indexDao.insertStore(userIdx, contents, type);
     // console.log(insertTodoRow);
 
     if (!insertTodoRow) {
@@ -51,14 +52,14 @@ exports.createTodo = async function (req, res) {
     });
 };
 
-exports.readTodo = async function (req, res) {
+exports.readStore = async function (req, res) {
     const { userIdx } = req.params;
 
     const todos = {};
-    const types = ["do", "decide", "delegate", "delete"];
+    const types = ["chicken", "takoyaki", "fishBread", "hotteok"];
 
     for (let type of types) {
-        let selectTodoByTypeRows = await indexDao.selectTodoByType(userIdx, type);
+        let selectTodoByTypeRows = await indexDao.selectByType(userIdx, type);
 
         if (!selectTodoByTypeRows) {
             return res.send({
@@ -80,7 +81,7 @@ exports.readTodo = async function (req, res) {
     });
 };
 
-exports.updateTodo = async function (req, res) {
+exports.updateStore = async function (req, res) {
     let { userIdx, todoIdx, contents, status } = req.body;
 
     if (!userIdx || !todoIdx) {
@@ -100,7 +101,7 @@ exports.updateTodo = async function (req, res) {
     }
 
     // 유효성 검증
-    const isValidTodoRow = await indexDao.selectValidTodo(userIdx, todoIdx);
+    const isValidTodoRow = await indexDao.selectValid(userIdx, todoIdx);
     if (isValidTodoRow.length < 1) {
         return res.send({
             isSuccess: false,
@@ -110,7 +111,7 @@ exports.updateTodo = async function (req, res) {
     }
 
     // Update 실시 
-    const updateTodoRow = await indexDao.updateTodo(userIdx, todoIdx, contents, status);
+    const updateTodoRow = await indexDao.update(userIdx, todoIdx, contents, status);
     if (!updateTodoRow) {
         return res.send({
             isSuccess: false,
@@ -126,7 +127,7 @@ exports.updateTodo = async function (req, res) {
     });
 };
 
-exports.deleteTodo = async function (req, res) {
+exports.deleteStore = async function (req, res) {
     const { userIdx, todoIdx } = req.params;
 
     // Null 체크
@@ -134,12 +135,12 @@ exports.deleteTodo = async function (req, res) {
         return res.send({
             isSuccess: false,
             code: 400,
-            message: "userIdx, todoIdx 입력 요망"
+            message: "userIdx, storeIdx 입력 요망"
         });
     }
 
     // 유효성 검증
-    const isValidTodoRow = await indexDao.selectValidTodo(userIdx, todoIdx);
+    const isValidTodoRow = await indexDao.selectValid(userIdx, todoIdx);
     if (isValidTodoRow.length < 1) {
         return res.send({
             isSuccess: false,
@@ -149,7 +150,7 @@ exports.deleteTodo = async function (req, res) {
     }
 
     // Delete 실시
-    const deleteTodoRow = await indexDao.deleteTodo(userIdx, todoIdx);
+    const deleteTodoRow = await indexDao.delete(userIdx, todoIdx);
     if (!deleteTodoRow) {
         return res.send({
             isSuccess: false,
